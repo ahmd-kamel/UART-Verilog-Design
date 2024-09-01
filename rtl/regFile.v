@@ -1,4 +1,4 @@
-module reg_file#(parameter DATA_W = 8, ADD_W = 4)
+module REG_FILE#(parameter DATA_W = 8, ADD_W = 4)
 ( 
     input  wire Clk,
     input  wire RdEn,

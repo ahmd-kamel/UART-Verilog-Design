@@ -22,8 +22,9 @@ parameter XOR  = 'b1000;
 parameter XNOR = 'b1001;
 parameter CMPE = 'b1010;
 parameter CMPG = 'b1011;
-parameter SFTR = 'b1100;
-parameter SFTL = 'b1101;
+parameter CMPL = 'b1100;
+parameter SFTR = 'b1101;
+parameter SFTL = 'b1110;
 
 reg  [2 * DATA_W - 1 : 0] AluOut_comb;
 reg  OutValid_comb;
@@ -80,16 +81,23 @@ always @(*) begin
             end
             CMPE : begin
                 if (OpA == OpB) begin
-                    AluOut_comb = 'b1;
+                    AluOut_comb = 'd1;
                 end else begin
-                    AluOut_comb = 'b0;
+                    AluOut_comb = 'd0;
                 end
             end
             CMPG : begin
                 if (OpA > OpB) begin
-                    AluOut_comb = 'b1;
+                    AluOut_comb = 'd2;
                 end else begin
-                    AluOut_comb = 'b0;
+                    AluOut_comb = 'd0;
+                end
+            end
+            CMPL : begin
+                if (OpA < OpB) begin
+                    AluOut_comb = 'd3;
+                end else begin
+                    AluOut_comb = 'd0;
                 end
             end
             SFTR : begin
